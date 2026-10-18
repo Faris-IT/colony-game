@@ -7,9 +7,11 @@
   function refresh(){
     UI.renderResources(S);
     UI.renderTools(S.tool, S.res);
+    UI.renderGoals(Modes[S.modeId].goals(S));
     UI.renderInfo(S.tool, hover.x==null ? null : MapSystem.get(S.map, hover.x, hover.y));
   }
   function act(x, y){
+    if(S.over){ UI.toast("Permainan sudah selesai. Pilih Main lagi untuk mengulang.", true); return; }
     const r = S.tool === 'demolish' ? BuildingSystem.demolish(S, x, y) : BuildingSystem.place(S, x, y, S.tool);
     UI.toast(r.msg, !r.ok);
     if(r.ok){ Renderer.drawTile(S.map, x, y); Renderer.pulse(S.map, x, y); }

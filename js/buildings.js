@@ -14,7 +14,7 @@ window.BuildingSystem = {
     if(tile.type !== 'empty') return {ok:false, msg:'Petak sudah terisi. Hapus isinya dulu.'};
     if(!this.canAfford(def.cost, state.res)) return {ok:false, msg:'Sumber daya tidak cukup untuk '+def.name+'.'};
     this.pay(def.cost, state.res);
-    tile.type = id;
+    tile.type = id; state.stats.built++;
     return {ok:true, msg:def.name+' dibangun.'};
   },
   demolish(state, x, y){

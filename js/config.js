@@ -4,6 +4,7 @@ window.CONFIG = {
          startResources:{food:40, wood:60, stone:20, coins:200, energy:0}, startPopulation:5,
          treeDensity:0.12, rockDensity:0.06},
   demolishRefund: 0.5,
+  taxPerCitizen: 1,      // pajak: Coins per warga per hari
   clearReward:{tree:{wood:3}, rock:{stone:3}},
   RESOURCES:[
     {key:'food',  icon:'🌾', label:'Makanan'},

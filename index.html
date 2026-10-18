@@ -9,17 +9,19 @@
 <body>
 <header id="topbar">
   <h1>Mufa Colony</h1>
-  <div id="dayBox"><b id="dayLbl"></b><button id="nextDay">Hari berikutnya</button></div>
+  <div id="dayBox"><b id="dayLbl"></b><button id="nextDay">Hari berikutnya</button><button id="play" class="sec">Jalankan</button><button id="speed" class="sec" title="Kecepatan">1x</button></div>
   <ul id="resources" aria-label="Sumber daya"></ul>
 </header>
 <main id="game">
   <section id="mapWrap"><div id="map" role="grid" aria-label="Peta koloni" tabindex="0"></div></section>
   <aside id="panel">
+    <div id="goals"></div>
     <div id="tools"></div>
     <div id="info" aria-live="polite"></div>
     <div id="report"></div>
   </aside>
 </main>
+<div id="modal" hidden><div class="box" role="dialog" aria-modal="true"></div></div>
 <footer id="toast" role="status"></footer>
 <script src="data/buildings.js"></script>
 <script src="js/config.js"></script>
@@ -32,6 +34,8 @@
 <script src="js/simulation.js"></script>
 <script src="js/renderer.js"></script>
 <script src="js/ui.js"></script>
+<script src="js/dialogs.js"></script>
+<script src="modes/classic.js"></script>
 <script src="js/main.js"></script>
 <script src="js/day.js"></script>
 </body>

@@ -68,3 +68,22 @@ body{background:var(--bg);color:var(--ink);font:15px/1.45 "Trebuchet MS","Segoe 
 #report h3{margin:8px 0 4px;font-size:13px;color:var(--mute)}
 #report p{margin:0 0 6px}#report ul{margin:0;padding-left:18px;color:#e0715c}
 @media (max-width:760px){#resources{margin:0}}
+
+/* Tahap 3: tujuan, dialog, kontrol hari */
+#nextDay.sec,#dayBox .sec{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:600}
+#goals h3,#report h3{margin:0 0 6px;font-size:13px;color:var(--mute);font-weight:600}
+.goal{position:relative;display:flex;justify-content:space-between;gap:8px;padding:5px 8px;margin-bottom:5px;border:1px solid var(--line);border-radius:6px;font-size:12.5px;overflow:hidden}
+.goal span,.goal b{position:relative;z-index:1}
+.goal i{position:absolute;left:0;top:0;bottom:0;background:rgba(80,170,100,.25);transition:width .3s}
+.goal.done{border-color:#4faa64}.goal.done b::after{content:" ✓";color:#4faa64}
+#modal{position:fixed;inset:0;background:rgba(5,12,14,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+#modal[hidden]{display:none}
+#modal .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;max-width:420px;width:100%;box-shadow:0 16px 40px rgba(0,0,0,.5);max-height:90vh;overflow:auto}
+#modal h2{margin:0 0 10px;font-size:19px}
+#modal p{margin:0 0 8px}
+#modal .warn{color:#e0715c;padding-left:18px;margin:8px 0}
+#modal .ok{color:#4faa64}
+#modal .btns{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+#modal .btns button{font:inherit;font-weight:700;background:var(--acc);color:#1b1405;border:0;border-radius:6px;padding:7px 14px;cursor:pointer}
+#modal .btns button:not(:first-child){background:transparent;color:var(--ink);border:1px solid var(--line)}
+@media (max-width:760px){#dayBox{flex-wrap:wrap}}

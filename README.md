@@ -1,0 +1,17 @@
+# Mufa Colony
+Game #3 Mufa Games. Simulasi, strategi, manajemen sumber daya. HTML/CSS/JS murni, tanpa aset eksternal.
+
+## Menjalankan
+Buka `index.html` di browser (atau host statis). Tidak perlu server.
+
+## Status pengembangan
+- [x] Tahap 1: Peta dan pembangunan
+- [ ] Tahap 2: Ekonomi dan penduduk
+- [ ] Tahap 3: Simulasi dan mode Classic
+- [ ] Tahap 4: Mode dasar dan variasi ekonomi
+- [ ] Tahap 5: Mekanik khusus
+- [ ] Tahap 6: Campaign dan progres
+- [ ] Tahap 7: Pengujian dan rilis
+
+## Kontrol Tahap 1
+Klik/tap petak untuk membangun. Keyboard: panah gerak, Enter bangun, Delete hapus, angka 1-9 pilih alat.

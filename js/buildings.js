@@ -21,7 +21,7 @@ window.BuildingSystem = {
     const tile = MapSystem.get(state.map, x, y);
     if(!tile || tile.type === 'empty') return {ok:false, msg:'Petak ini sudah kosong.'};
     if(tile.type === 'tree' || tile.type === 'rock'){
-      this.give(CONFIG.clearReward[tile.type], state.res);
+      this.give(CONFIG.clearReward[tile.type], state.res); state.stats.cleared++;
       tile.type = 'empty';
       return {ok:true, msg:'Petak dibersihkan.'};
     }

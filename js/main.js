@@ -1,10 +1,12 @@
 // Titik masuk Tahap 1: peta + pembangunan. Simulasi hari dimulai di Tahap 3.
 (function(){
-  State.init(CONFIG.mode);
+  const MODE_ID = (location.hash||'').slice(1);
+  State.init(CONFIG.modes[MODE_ID] || CONFIG.mode);
   const S = State.data, hover = {x:null, y:null};
   const keys = ['road','house','farm','sawmill','quarry','warehouse','park','market','demolish'];
 
   function refresh(){
+    window.HINT = Modes[S.modeId].hint ? Modes[S.modeId].hint(S) : null;
     UI.renderResources(S);
     UI.renderTools(S.tool, S.res);
     UI.renderGoals(Modes[S.modeId].goals(S));
@@ -19,7 +21,7 @@
   }
   function pos(e){ const c = e.target.closest('.cell'); return c ? {x:+c.dataset.x, y:+c.dataset.y} : null; }
 
-  window.Game = {S, refresh};
+  window.Game = {S, refresh, chosen: !!CONFIG.modes[MODE_ID]};
   Renderer.build(S.map);
   refresh();
 

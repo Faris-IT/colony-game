@@ -18,13 +18,19 @@
       <p>Produksi: ${f(r.prod)}</p><p>Konsumsi: ${f(r.cons)}</p>
       <p>Pajak warga: ${Sprites.icon('coins')} +${r.income}</p><p>Biaya operasional: ${Sprites.icon('coins')} ${r.maint}</p>
       <p><b>Perubahan bersih:</b> ${signed(r.delta)}</p>
-      <p>Penduduk: ${r.pop>0?'+':''}${r.pop} (kapasitas ${r.cap})</p>`
+      <p>Penduduk: ${r.pop>0?'+':''}${r.pop} (kapasitas ${r.cap})</p><p>Kepuasan warga: ${r.sat}%</p>`
       + (r.notes.length ? '<ul class="warn">' + r.notes.map(n => `<li>${n}</li>`).join('') + '</ul>' : '<p class="ok">Tidak ada masalah.</p>');
   };
   UI.renderGoals = function(goals){
     document.getElementById('goals').innerHTML = '<h3>Tujuan</h3>' + goals.map(g => {
       const pct = g.target ? Math.min(100, Math.round(g.cur / g.target * 100)) : (g.ok ? 100 : 0);
-      return `<div class="goal ${g.ok?'done':''}"><span>${g.label}</span><b>${g.target ? g.cur+'/'+g.target : g.text}</b><i style="width:${pct}%"></i></div>`;
+      return `<div class="goal ${g.ok?'done':''}"><span>${g.label}</span><b>${g.target ? g.cur+'/'+g.target : (g.text||'')}</b><i style="width:${pct}%"></i></div>`;
     }).join('');
   };
 })();
+
+UI.menu = function(){
+  const go = id => () => { location.hash = id; location.reload(); };
+  UI.modal('<h2>Pilih mode</h2><p><b>Tutorial</b>: belajar langkah demi langkah. Cocok untuk pemula.</p><p><b>Colony Classic</b>: bangun koloni yang stabil.</p>',
+    [{label:'Tutorial', fn:go('tutorial')}, {label:'Colony Classic', fn:go('classic')}]);
+};

@@ -7,7 +7,7 @@ window.Sim = {
     let free = S.res.population;
     list.forEach(b => { b.staffed = b.d.workersRequired <= free; if(b.staffed) free -= b.d.workersRequired; });
     Economy.produce(S.res, list, rep);
-    rep.income = S.res.population * CONFIG.taxPerCitizen; S.res.coins += rep.income;
+    rep.income = Math.round(S.res.population * CONFIG.taxPerCitizen * S.satisfaction / 70); S.res.coins += rep.income;
     Economy.payMaintenance(S.res, list, rep);
     Population.update(S, list, rep);
     rep.storageCap = Economy.clampStorage(S.res, list);

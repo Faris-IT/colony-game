@@ -3,7 +3,8 @@ window.Modes = window.Modes || {};
 Modes.classic = {
   id:'classic', name:'Colony Classic',
   targetPop:30, foodDays:5, debtDays:5,
-  intro:'Bangun koloni yang stabil.',
+  introHtml(){ return `<h2>${this.name}</h2><p>Bangun koloni yang stabil: capai ${this.targetPop} penduduk, jaga saldo Coins positif, dan pertahankan makanan aman ${this.foodDays} hari berturut-turut.</p>
+    <p>Kalah jika penduduk habis atau kas minus ${this.debtDays} hari berturut-turut. Baru pertama main? Pilih Mode, lalu Tutorial.</p>`; },
   goals(S){
     return [
       {label:'Penduduk', cur:S.res.population, target:this.targetPop, ok:S.res.population >= this.targetPop},

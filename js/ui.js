@@ -10,11 +10,11 @@ window.UI = {
   renderTools(tool, res){
     const el = document.getElementById('tools'), groups = {};
     Object.entries(BUILDINGS).forEach(([id,d]) => (groups[d.cat] = groups[d.cat]||[]).push([id,d]));
-    let html = `<button class="tool demolish ${tool==='demolish'?'on':''}" data-tool="demolish">Hapus / bersihkan</button>`;
+    let html = `<button class="tool demolish ${tool==='demolish'?'on':''} ${window.HINT==='demolish'&&tool!=='demolish'?'hint':''}" data-tool="demolish">Hapus / bersihkan</button>`;
     for(const cat in groups){
       html += `<h3>${cat}</h3><div class="grid">` + groups[cat].map(([id,d]) => {
         const ok = BuildingSystem.canAfford(d.cost, res);
-        return `<button class="tool ${tool===id?'on':''} ${ok?'':'poor'}" data-tool="${id}" style="--b:${d.color}">
+        return `<button class="tool ${tool===id?'on':''} ${ok?'':'poor'} ${window.HINT===id&&tool!==id?'hint':''}" data-tool="${id}" style="--b:${d.color}">
           <span class="ic">${Sprites.get(id)}</span><span class="nm">${d.name}</span><span class="cs">${BuildingSystem.costText(d.cost)}</span></button>`;
       }).join('') + '</div>';
     }

@@ -15,3 +15,11 @@ window.CONFIG = {
     {key:'population', icon:'👥', label:'Penduduk'}
   ]
 };
+
+CONFIG.clearReward = {tree:{wood:5}, rock:{stone:4}};
+CONFIG.modes = {
+  classic: CONFIG.mode,
+  tutorial: {id:'tutorial', name:'Tutorial', width:12, height:9,
+    startResources:{food:60, wood:100, stone:60, coins:450, energy:0}, startPopulation:5,
+    treeDensity:0.15, rockDensity:0.08}
+};

@@ -22,7 +22,7 @@ window.Renderer = {
     c.innerHTML = t.type === 'empty' ? '' : Sprites.get(t.type);
     c.setAttribute('aria-label', names[t.type] || BUILDINGS[t.type].name);
     if(BUILDINGS[t.type] && (t.status === 'nostaff' || t.status === 'noinput')){
-      c.classList.add('idle'); c.title = t.status === 'nostaff' ? 'Kurang pekerja' : 'Kurang bahan';
+      c.classList.add('idle'); c.title = t.status === 'nostaff' ? 'Kurang pekerja' : 'Kurang ' + ((CONFIG.RESOURCES.find(r => r.key === t.missing) || {}).label || 'bahan');
     } else c.removeAttribute('title');
   },
   drawAll(map){ for(let y=0;y<map.h;y++) for(let x=0;x<map.w;x++) this.drawTile(map,x,y); },

@@ -9,22 +9,21 @@ window.Renderer = {
     this.cells = [];
     for(let y=0; y<map.h; y++) for(let x=0; x<map.w; x++){
       const c = document.createElement('div');
-      c.className = 'cell'; c.dataset.x = x; c.dataset.y = y; c.setAttribute('role','gridcell');
+      c.dataset.x = x; c.dataset.y = y; c.setAttribute('role','gridcell');
       this.mapEl.appendChild(c); this.cells.push(c);
     }
     this.drawAll(map);
   },
   cell(map,x,y){ return this.cells[y*map.w+x]; },
   drawTile(map,x,y){
-    const t = map.tiles[y][x].type, c = this.cell(map,x,y);
-    c.className = 'cell';
-    c.style.removeProperty('--b');
-    if(t === 'empty'){ c.textContent=''; c.setAttribute('aria-label','Tanah kosong'); return; }
-    if(t === 'tree'){ c.textContent='🌲'; c.classList.add('env','tree'); c.setAttribute('aria-label','Pohon'); return; }
-    if(t === 'rock'){ c.textContent='🪨'; c.classList.add('env','rock'); c.setAttribute('aria-label','Batu'); return; }
-    const d = BUILDINGS[t];
-    c.textContent = d.icon; c.classList.add('bld', t==='road'?'road':'solid');
-    c.style.setProperty('--b', d.color); c.setAttribute('aria-label', d.name);
+    const t = map.tiles[y][x], c = this.cell(map,x,y), cur = c.classList.contains('cursor');
+    c.className = 'cell v' + ((x*7 + y*13 + (x^y)) % 4) + (cur ? ' cursor' : '');
+    const names = {empty:'Tanah kosong', tree:'Pohon', rock:'Batu'};
+    c.innerHTML = t.type === 'empty' ? '' : Sprites.get(t.type);
+    c.setAttribute('aria-label', names[t.type] || BUILDINGS[t.type].name);
+    if(BUILDINGS[t.type] && (t.status === 'nostaff' || t.status === 'noinput')){
+      c.classList.add('idle'); c.title = t.status === 'nostaff' ? 'Kurang pekerja' : 'Kurang bahan';
+    } else c.removeAttribute('title');
   },
   drawAll(map){ for(let y=0;y<map.h;y++) for(let x=0;x<map.w;x++) this.drawTile(map,x,y); },
   pulse(map,x,y){ const c=this.cell(map,x,y); c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); },

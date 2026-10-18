@@ -5,7 +5,7 @@
   const keys = ['road','house','farm','sawmill','quarry','warehouse','park','market','demolish'];
 
   function refresh(){
-    UI.renderResources(S.res);
+    UI.renderResources(S);
     UI.renderTools(S.tool, S.res);
     UI.renderInfo(S.tool, hover.x==null ? null : MapSystem.get(S.map, hover.x, hover.y));
   }
@@ -17,6 +17,7 @@
   }
   function pos(e){ const c = e.target.closest('.cell'); return c ? {x:+c.dataset.x, y:+c.dataset.y} : null; }
 
+  window.Game = {S, refresh};
   Renderer.build(S.map);
   refresh();
 

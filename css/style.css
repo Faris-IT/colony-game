@@ -48,3 +48,23 @@ body{background:var(--bg);color:var(--ink);font:15px/1.45 "Trebuchet MS","Segoe 
   .cell{font-size:19px}
 }
 @media (prefers-reduced-motion:reduce){ .cell.pop{animation:none} #toast{transition:none} }
+
+/* Tahap 2: grafis vektor */
+#map{gap:0;background:#3d7a3c;border:0;border-radius:10px;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.4)}
+.cell{font-size:0;background-image:radial-gradient(circle at 25% 30%,rgba(255,255,255,.07) 0 2.5px,transparent 3.5px),radial-gradient(circle at 72% 74%,rgba(0,0,0,.08) 0 3px,transparent 4px)}
+.cell.v1{background-color:#4a8a46}.cell.v2{background-color:#549650}.cell.v3{background-color:#478246}
+.cell svg{width:100%;height:100%;display:block;pointer-events:none}
+.cell.idle svg{filter:grayscale(.75) brightness(.8)}
+.cell.idle::after{content:"";position:absolute;top:3px;right:3px;width:9px;height:9px;border-radius:50%;background:#e5533d;border:1.5px solid #fff}
+.tool .ic svg{width:30px;height:30px;display:block}
+.tool{grid-template-columns:30px 1fr}
+.ri{width:14px;height:14px;vertical-align:-2px}
+#resources li{background:rgba(127,160,150,.12);padding:3px 9px 3px 6px;border-radius:14px}
+#dayBox{display:flex;gap:10px;align-items:center}
+#nextDay{font:inherit;font-weight:700;background:var(--acc);color:#1b1405;border:0;border-radius:6px;padding:6px 12px;cursor:pointer}
+#nextDay:hover{filter:brightness(1.1)}
+#report{border-top:1px solid var(--line);font-size:13px}
+#report:empty{display:none}
+#report h3{margin:8px 0 4px;font-size:13px;color:var(--mute)}
+#report p{margin:0 0 6px}#report ul{margin:0;padding-left:18px;color:#e0715c}
+@media (max-width:760px){#resources{margin:0}}

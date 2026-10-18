@@ -6,7 +6,7 @@ Buka `index.html` di browser (atau host statis). Tidak perlu server.
 
 ## Status pengembangan
 - [x] Tahap 1: Peta dan pembangunan
-- [ ] Tahap 2: Ekonomi dan penduduk
+- [x] Tahap 2: Ekonomi dan penduduk (tombol "Hari berikutnya" masih versi uji; laporan resmi di Tahap 3)
 - [ ] Tahap 3: Simulasi dan mode Classic
 - [ ] Tahap 4: Mode dasar dan variasi ekonomi
 - [ ] Tahap 5: Mekanik khusus

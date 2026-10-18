@@ -9,6 +9,7 @@
 <body>
 <header id="topbar">
   <h1>Mufa Colony</h1>
+  <div id="dayBox"><b id="dayLbl"></b><button id="nextDay">Hari berikutnya</button></div>
   <ul id="resources" aria-label="Sumber daya"></ul>
 </header>
 <main id="game">
@@ -16,6 +17,7 @@
   <aside id="panel">
     <div id="tools"></div>
     <div id="info" aria-live="polite"></div>
+    <div id="report"></div>
   </aside>
 </main>
 <footer id="toast" role="status"></footer>
@@ -24,8 +26,13 @@
 <script src="js/state.js"></script>
 <script src="js/map.js"></script>
 <script src="js/buildings.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/economy.js"></script>
+<script src="js/population.js"></script>
+<script src="js/simulation.js"></script>
 <script src="js/renderer.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/main.js"></script>
+<script src="js/day.js"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@
     const f = o => Object.keys(o).length ? BuildingSystem.costText(o) : '-';
     return `<h2>Laporan hari ${r.day}</h2>
       <p>Produksi: ${f(r.prod)}</p><p>Konsumsi: ${f(r.cons)}</p>
-      <p>Pajak warga: ${Sprites.icon('coins')} +${r.income}</p><p>Biaya operasional: ${Sprites.icon('coins')} ${r.maint}</p>
+      ${r.sales ? '<p>Penjualan stok: '+Sprites.icon('coins')+' +'+r.sales+'</p>' : ''}<p>Pajak warga: ${Sprites.icon('coins')} +${r.income}</p><p>Biaya operasional: ${Sprites.icon('coins')} ${r.maint}</p>
       <p><b>Perubahan bersih:</b> ${signed(r.delta)}</p>
       <p>Penduduk: ${r.pop>0?'+':''}${r.pop} (kapasitas ${r.cap})</p><p>Kepuasan warga: ${r.sat}%</p>`
       + (r.notes.length ? '<ul class="warn">' + r.notes.map(n => `<li>${n}</li>`).join('') + '</ul>' : '<p class="ok">Tidak ada masalah.</p>');
@@ -33,4 +33,11 @@ UI.menu = function(){
   const go = id => () => { location.hash = id; location.reload(); };
   UI.modal('<h2>Pilih mode</h2><p><b>Tutorial</b>: belajar langkah demi langkah. Cocok untuk pemula.</p><p><b>Colony Classic</b>: bangun koloni yang stabil.</p>',
     [{label:'Tutorial', fn:go('tutorial')}, {label:'Colony Classic', fn:go('classic')}]);
+};
+
+// Menu pemilihan mode (versi lengkap dengan kartu mode ada di Tahap 6).
+UI.menu = function(){
+  const ids = ['tutorial','classic','speed','survival','economic','boom','tiny'];
+  UI.modal('<h2>Pilih mode</h2><div class="mgrid">' + ids.map(id => `<button class="mcard" data-m="${id}"><b>${Modes[id].name}</b><span>${Modes[id].desc}</span><em>${Modes[id].diff}</em></button>`).join('') + '</div>', [{label:'Tutup'}]);
+  document.querySelectorAll('#modal .mcard').forEach(b => b.onclick = () => { location.hash = b.dataset.m; location.reload(); });
 };

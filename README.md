@@ -9,7 +9,7 @@ Buka `index.html` di browser (atau host statis). Tidak perlu server.
 - [x] Tahap 2: Ekonomi dan penduduk (tombol "Hari berikutnya" masih versi uji; laporan resmi di Tahap 3)
 - [x] Tahap 3: Simulasi dan mode Classic
 - [x] Mode Tutorial (tambahan di luar 12 mode, untuk pemain baru)
-- [ ] Tahap 4: Mode dasar dan variasi ekonomi
+- [x] Tahap 4: Mode dasar dan variasi ekonomi (Speed Builder, Survival, Economic Empire, Population Boom, Tiny Territory)
 - [ ] Tahap 5: Mekanik khusus
 - [ ] Tahap 6: Campaign dan progres
 - [ ] Tahap 7: Pengujian dan rilis

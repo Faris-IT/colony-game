@@ -1,7 +1,7 @@
 // Mode Colony Classic: tujuan, kondisi menang, dan kondisi kalah.
 window.Modes = window.Modes || {};
 Modes.classic = {
-  id:'classic', name:'Colony Classic',
+  id:'classic', name:'Colony Classic', desc:'Bangun koloni yang stabil.', diff:'Sedang',
   targetPop:30, foodDays:5, debtDays:5,
   introHtml(){ return `<h2>${this.name}</h2><p>Bangun koloni yang stabil: capai ${this.targetPop} penduduk, jaga saldo Coins positif, dan pertahankan makanan aman ${this.foodDays} hari berturut-turut.</p>
     <p>Kalah jika penduduk habis atau kas minus ${this.debtDays} hari berturut-turut. Baru pertama main? Pilih Mode, lalu Tutorial.</p>`; },

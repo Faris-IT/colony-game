@@ -2,7 +2,7 @@
 (function(){
   const count = (S,id) => S.map.tiles.flat().filter(t => t.type === id).length;
   Modes.tutorial = {
-    id:'tutorial', name:'Tutorial',
+    id:'tutorial', name:'Tutorial', desc:'Belajar langkah demi langkah.', diff:'Mudah',
     steps:[
       {tool:'house',  text:'Pilih Rumah di panel kanan, lalu klik tanah kosong. Rumah menambah tempat tinggal warga.', done:S => count(S,'house') >= 1},
       {tool:'farm',   text:'Bangun Ladang. Ladang menghasilkan makanan, tetapi butuh 2 warga sebagai pekerja.', done:S => count(S,'farm') >= 1},

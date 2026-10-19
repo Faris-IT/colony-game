@@ -9,7 +9,7 @@
     stop(); S.over = ev;
     const st = S.stats, win = ev.result === 'win', tut = S.modeId === 'tutorial';
     const go = id => () => { location.hash = id; location.reload(); };
-    UI.modal(`<h2>${win ? (tut ? 'Tutorial selesai!' : 'Koloni berhasil!') : 'Koloni gagal'}</h2><p>${ev.reason}</p>
+    UI.modal(`<h2>${ev.result === 'end' ? 'Waktu habis' : win ? (tut ? 'Tutorial selesai!' : 'Koloni berhasil!') : 'Koloni gagal'}</h2><p>${ev.reason}</p>
       <p>Bertahan ${S.day-1} hari. Penduduk tertinggi ${st.peakPop}. Bangunan dibangun ${st.built}.</p>`,
       [{label: win && tut ? 'Main Colony Classic' : 'Main lagi', fn: go(win && tut ? 'classic' : S.modeId)}, {label:'Lihat peta'}]);
   }

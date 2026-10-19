@@ -14,9 +14,10 @@
   }
   function act(x, y){
     if(S.over){ UI.toast("Permainan sudah selesai. Pilih Main lagi untuk mengulang.", true); return; }
-    const r = S.tool === 'demolish' ? BuildingSystem.demolish(S, x, y) : BuildingSystem.place(S, x, y, S.tool);
+    const T = S.tool;
+    const r = T === 'demolish' ? BuildingSystem.demolish(S, x, y) : T === 'repair' ? BuildingSystem.repair(S, x, y) : T === 'explore' ? BuildingSystem.explore(S, x, y) : BuildingSystem.place(S, x, y, T);
     UI.toast(r.msg, !r.ok);
-    if(r.ok){ Renderer.drawTile(S.map, x, y); Renderer.pulse(S.map, x, y); }
+    if(r.ok){ if(T === 'explore') Renderer.drawAll(S.map); else Renderer.drawTile(S.map, x, y); Renderer.pulse(S.map, x, y); }
     refresh();
   }
   function pos(e){ const c = e.target.closest('.cell'); return c ? {x:+c.dataset.x, y:+c.dataset.y} : null; }

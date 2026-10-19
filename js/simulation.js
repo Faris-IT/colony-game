@@ -6,9 +6,10 @@ window.Sim = {
   runDay(S){
     const R = S.rules, before = Object.assign({}, S.res), list = [];
     const rep = {prod:{}, cons:{}, maint:0, pop:0, notes:[], sales:0, sold:{}};
+    Events.run(S, rep);
     S.map.tiles.forEach((row,y) => row.forEach((t,x) => { if(BUILDINGS[t.type]) list.push({t, x, y, d:BUILDINGS[t.type], active:false}); }));
     list.forEach(b => { b.connected = !R.roadRequired || b.t.type === 'road' || this.nearRoad(S.map, b.x, b.y); });
-    list.sort((a,b) => (b.d.production.energy?1:0) - (a.d.production.energy?1:0)); // pembangkit dulu
+    list.sort((a,b) => ((b.d.production.energy?100:0) + (CONFIG.priority[b.t.type]||5)) - ((a.d.production.energy?100:0) + (CONFIG.priority[a.t.type]||5))); // pembangkit dulu, lalu prioritas
     let free = S.res.population;
     list.forEach(b => { b.staffed = b.connected && b.d.workersRequired <= free; if(b.staffed) free -= b.d.workersRequired; });
     rep.unemployed = free;
@@ -16,7 +17,12 @@ window.Sim = {
     if(R.sell) Economy.sell(S, rep);
     rep.income = Math.round(S.res.population * CONFIG.taxPerCitizen * S.satisfaction / 70 * (R.taxMult || 1)); S.res.coins += rep.income;
     Economy.payMaintenance(S.res, list, rep, R.maintMult || 1);
+    S.env = Math.max(0, Math.min(100, Math.round(45 + Economy.sumActive(list,'effects','environment') + S.map.tiles.flat().filter(t => t.type === 'tree').length/2)));
     Population.update(S, list, rep);
+    S.greenStreak = (S.satisfaction >= 80 && S.env >= 85) ? S.greenStreak + 1 : 0;
+    const essOk = ['apartment','clinic','school'].every(id => list.filter(b => b.t.type === id).every(b => b.active)) && list.some(b => b.t.type === 'clinic');
+    S.energyStreak = (essOk && !rep.energyShort) ? S.energyStreak + 1 : 0;
+    rep.env = S.env;
     rep.storageCap = Economy.clampStorage(S.res, list);
     S.foodStreak = (S.shortage === 0 && S.res.food >= S.res.population) ? S.foodStreak + 1 : 0;
     S.debtStreak = S.res.coins < 0 ? S.debtStreak + 1 : 0;

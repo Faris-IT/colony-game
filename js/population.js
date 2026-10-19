@@ -11,9 +11,10 @@ window.Population = {
     // Kepuasan: dasar 80, plus fasilitas aktif. Tiap 10 warga butuh 1 fasilitas sosial (selain yang pertama).
     const unemp = S.rules.unemployment ? Math.min(25, Math.floor((rep.unemployed||0)/4)*3) : 0;
     if(unemp) rep.notes.push("Banyak warga menganggur: bangun tempat kerja.");
+    const greenPen = S.rules.green ? Math.max(0, Math.round((60 - S.env) / 2)) : 0;
     const need = Math.max(0, Math.ceil(pop/10) - 1), social = this.social(list);
     S.satisfaction = Math.max(0, Math.min(100, 80 + Economy.sumActive(list,'effects','satisfaction')
-      - 8*Math.max(0, need - social) - unemp - S.shortage*15 - (res.coins < 0 ? 10 : 0)));
+      - 8*Math.max(0, need - social) - unemp - greenPen - S.shortage*15 - (res.coins < 0 ? 10 : 0)));
     if(need > social) rep.notes.push('Warga butuh fasilitas: taman, klinik, sekolah, atau pasar.');
     let d = 0;
     if(S.shortage >= 2){ d = -Math.min(1, pop); rep.notes.push('Seorang warga pergi karena kelaparan.'); }

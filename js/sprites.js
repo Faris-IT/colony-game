@@ -18,6 +18,9 @@
     clinic: sh+'<rect x="7" y="12" width="26" height="22" fill="#eef1f4"/><rect x="7" y="12" width="26" height="4" fill="#c9d1d8"/><rect x="18" y="19" width="4" height="10" fill="#d9453d"/><rect x="15" y="22" width="10" height="4" fill="#d9453d"/>',
     school: sh+'<rect x="6" y="18" width="28" height="16" fill="#d9b86a"/><path d="M4 19L20 8l16 11z" fill="#6f5fb8"/><rect x="17" y="26" width="6" height="8" fill="#5a3f26"/><rect x="9" y="23" width="5" height="5" fill="#8fc6e6"/><rect x="26" y="23" width="5" height="5" fill="#8fc6e6"/><rect x="19.5" y="2" width="1.2" height="7" fill="#444"/><path d="M20.7 2l6 2-6 2z" fill="#e0504a"/>',
     market: sh+'<rect x="7" y="20" width="26" height="14" fill="#d9c08a"/>'+n(6,i=>`<rect x="${5+i*5}" y="12" width="5" height="9" fill="${i%2?'#fff':'#d0507a'}"/>`)+'<circle cx="14" cy="28" r="3" fill="#e0602d"/><circle cx="21" cy="28" r="3" fill="#8fc24a"/><circle cx="27" cy="28" r="3" fill="#f2c33a"/>',
+    swamp: '<ellipse cx="20" cy="24" rx="15" ry="9" fill="#3f6b5a"/><ellipse cx="17" cy="22" rx="8" ry="4" fill="#5f9a86" opacity=".7"/><path d="M28 28v-9M31 28v-6M25 28v-7" stroke="#2f5a3a" stroke-width="1.5"/>',
+    fertile: '<g fill="#f4d35e"><circle cx="10" cy="12" r="2.2"/><circle cx="28" cy="10" r="2.2"/><circle cx="20" cy="28" r="2.2"/><circle cx="33" cy="30" r="2.2"/><circle cx="8" cy="32" r="2.2"/></g><g fill="#e07a9a"><circle cx="20" cy="14" r="1.8"/><circle cx="12" cy="24" r="1.8"/><circle cx="31" cy="21" r="1.8"/></g>',
+    site: '<circle cx="20" cy="20" r="13" fill="#f2c33a" opacity=".25"/><path d="M20 6l4 9 10 1-7.5 7 2.5 10-9-5.5L11 33l2.5-10L6 16l10-1z" fill="#f2c33a" stroke="#c38a10"/>',
     tree: '<ellipse cx="20" cy="35" rx="9" ry="3" fill="rgba(0,0,0,.22)"/><rect x="18" y="26" width="4" height="9" fill="#6b4630"/><circle cx="20" cy="18" r="11" fill="#2f7a3a"/><circle cx="16" cy="15" r="7" fill="#3f9a4a"/><circle cx="25" cy="21" r="5" fill="#2a6e34"/>',
     rock: '<ellipse cx="20" cy="33" rx="13" ry="3" fill="rgba(0,0,0,.2)"/><path d="M7 31l4-12 9-5 10 5 4 12z" fill="#8c98a3"/><path d="M11 19l9-5 10 5-10 4z" fill="#c3ccd4"/>'
   };
@@ -28,6 +31,7 @@
     coins:'<circle cx="8" cy="8" r="6" fill="#e8a921"/><circle cx="8" cy="8" r="4" fill="none" stroke="#fbe08a" stroke-width="1.2"/>',
     energy:'<path d="M9 1L3 9h4l-1 6 7-9H9z" fill="#f2c33a"/>',
     population:'<circle cx="5.5" cy="5" r="2.3" fill="#8aa2d8"/><circle cx="11" cy="6" r="2" fill="#a9bbe6"/><path d="M1 14c0-4 9-4 9 0z" fill="#8aa2d8"/><path d="M8 14c0-3 7-3 7 0z" fill="#a9bbe6"/>',
+    env:'<path d="M3 13C3 6 8 3 14 3c0 7-3 11-9 11z" fill="#4fae5a"/><path d="M3 13L10 6" stroke="#2c7a3a" stroke-width="1.2"/>',
     satisfaction:'<circle cx="8" cy="8" r="6.5" fill="#f2c33a"/><circle cx="5.7" cy="6.5" r="1" fill="#5a4310"/><circle cx="10.3" cy="6.5" r="1" fill="#5a4310"/><path d="M4.7 9.6Q8 13 11.3 9.6" stroke="#5a4310" stroke-width="1.3" fill="none"/>'
   };
   window.Sprites = {

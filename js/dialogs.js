@@ -18,7 +18,7 @@
       <p>Produksi: ${f(r.prod)}</p><p>Konsumsi: ${f(r.cons)}</p>
       ${r.sales ? '<p>Penjualan stok: '+Sprites.icon('coins')+' +'+r.sales+'</p>' : ''}<p>Pajak warga: ${Sprites.icon('coins')} +${r.income}</p><p>Biaya operasional: ${Sprites.icon('coins')} ${r.maint}</p>
       <p><b>Perubahan bersih:</b> ${signed(r.delta)}</p>
-      <p>Penduduk: ${r.pop>0?'+':''}${r.pop} (kapasitas ${r.cap})</p><p>Kepuasan warga: ${r.sat}%</p>`
+      ${r.env != null && Game.S.rules.showEnv ? '<p>Lingkungan: ' + r.env + '</p>' : ''}<p>Penduduk: ${r.pop>0?'+':''}${r.pop} (kapasitas ${r.cap})</p><p>Kepuasan warga: ${r.sat}%</p>`
       + (r.notes.length ? '<ul class="warn">' + r.notes.map(n => `<li>${n}</li>`).join('') + '</ul>' : '<p class="ok">Tidak ada masalah.</p>');
   };
   UI.renderGoals = function(goals){
@@ -38,6 +38,12 @@ UI.menu = function(){
 // Menu pemilihan mode (versi lengkap dengan kartu mode ada di Tahap 6).
 UI.menu = function(){
   const ids = ['tutorial','classic','speed','survival','economic','boom','tiny'];
+  UI.modal('<h2>Pilih mode</h2><div class="mgrid">' + ids.map(id => `<button class="mcard" data-m="${id}"><b>${Modes[id].name}</b><span>${Modes[id].desc}</span><em>${Modes[id].diff}</em></button>`).join('') + '</div>', [{label:'Tutup'}]);
+  document.querySelectorAll('#modal .mcard').forEach(b => b.onclick = () => { location.hash = b.dataset.m; location.reload(); });
+};
+
+UI.menu = function(){
+  const ids = ['tutorial','classic','speed','survival','economic','boom','tiny','green','disaster','frontier','energy','endless'];
   UI.modal('<h2>Pilih mode</h2><div class="mgrid">' + ids.map(id => `<button class="mcard" data-m="${id}"><b>${Modes[id].name}</b><span>${Modes[id].desc}</span><em>${Modes[id].diff}</em></button>`).join('') + '</div>', [{label:'Tutup'}]);
   document.querySelectorAll('#modal .mcard').forEach(b => b.onclick = () => { location.hash = b.dataset.m; location.reload(); });
 };

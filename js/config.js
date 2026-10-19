@@ -23,3 +23,6 @@ CONFIG.modes = {
     startResources:{food:60, wood:100, stone:60, coins:450, energy:0}, startPopulation:5,
     treeDensity:0.15, rockDensity:0.08}
 };
+
+// Tahap 5
+CONFIG.priority = {apartment:9, clinic:9, school:8, house:7, farm:7, orchard:6, sawmill:5, quarry:5, warehouse:4, market:4, workshop:3, park:2};

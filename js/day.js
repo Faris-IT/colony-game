@@ -16,7 +16,7 @@
   function step(manual){
     if(S.over) return stop();
     const rep = Sim.runDay(S);
-    Renderer.drawAll(S.map); refresh(); UI.renderReport(rep);
+    rep.expanded ? Renderer.build(S.map) : Renderer.drawAll(S.map); refresh(); UI.renderReport(rep);
     const ev = mode.evaluate(S);
     if(ev) return end(ev);
     if(manual) UI.modal(UI.reportHtml(rep));

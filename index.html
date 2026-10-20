@@ -8,34 +8,44 @@
 </head>
 <body>
 <header id="topbar">
+  <button id="menuBtn" class="sec" title="Menu utama, pilih mode, pencapaian, statistik, pengaturan">☰ Menu</button>
   <h1>Mufa Colony</h1>
-  <div id="dayBox"><b id="dayLbl"></b><button id="nextDay">Hari berikutnya</button><button id="play" class="sec">Jalankan</button><button id="speed" class="sec" title="Kecepatan">1x</button><button id="menuBtn" class="sec">Mode</button></div>
+  <div id="dayBox">
+    <b id="dayLbl"></b>
+    <button id="nextDay" title="Proses satu hari: produksi, makan, dan biaya">Hari berikutnya</button>
+    <button id="play" class="sec" title="Jalankan hari-hari berikutnya secara otomatis">▶ Jalankan otomatis</button>
+    <button id="speed" class="sec" title="Ubah kecepatan mode otomatis">Kecepatan: 1x</button>
+  </div>
   <ul id="resources" aria-label="Sumber daya"></ul>
 </header>
 <main id="game">
-  <section id="mapWrap"><div id="map" role="grid" aria-label="Peta koloni" tabindex="0"></div></section>
-  <aside id="panel">
-    <div id="goals"></div>
-    <div id="tools"></div>
-    <div id="info" aria-live="polite"></div>
-    <div id="report"></div>
+  <aside id="side">
+    <section class="card" id="cardGoals"><h2>Tujuan</h2><div id="goals"></div></section>
+    <section class="card" id="cardInfo"><h2>Info bangunan</h2><div id="info" aria-live="polite"></div></section>
+    <section class="card" id="cardReport"><h2>Laporan harian <button id="openReport" class="mini" hidden>Detail</button></h2><div id="report"></div></section>
   </aside>
+  <section id="mapWrap"><div id="map" role="grid" aria-label="Peta koloni" tabindex="0"></div></section>
+  <aside id="panel"><div id="tools"></div></aside>
 </main>
 <div id="modal" hidden><div class="box" role="dialog" aria-modal="true"></div></div>
 <footer id="toast" role="status"></footer>
 <script src="data/buildings.js"></script>
+<script src="data/campaign-levels.js"></script>
 <script src="js/config.js"></script>
 <script src="js/state.js"></script>
 <script src="js/map.js"></script>
 <script src="js/buildings.js"></script>
+<script src="js/store.js"></script>
 <script src="js/sprites.js"></script>
 <script src="js/economy.js"></script>
 <script src="js/population.js"></script>
 <script src="js/simulation.js"></script>
 <script src="js/events.js"></script>
+<script src="js/scoring.js"></script>
 <script src="js/renderer.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/dialogs.js"></script>
+<script src="js/achievements.js"></script>
 <script src="modes/classic.js"></script>
 <script src="modes/tutorial.js"></script>
 <script src="modes/speed-builder.js"></script>
@@ -48,6 +58,8 @@
 <script src="modes/frontier-explorer.js"></script>
 <script src="modes/energy-crisis.js"></script>
 <script src="modes/endless.js"></script>
+<script src="modes/campaign.js"></script>
+<script src="js/screens.js"></script>
 <script src="js/main.js"></script>
 <script src="js/day.js"></script>
 </body>

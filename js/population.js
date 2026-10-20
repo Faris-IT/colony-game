@@ -1,7 +1,7 @@
 // Penduduk: kapasitas rumah, makan, pertumbuhan, kepuasan.
 window.Population = {
   BASE_CAPACITY: 5, // tenda awal
-  capacity(list){ return this.BASE_CAPACITY + Economy.sumActive(list,'capacity','population'); },
+  capacity(list){ return this.BASE_CAPACITY + list.reduce((s,b) => s + (b.active ? (b.d.capacity.population||0) : (!b.t.damaged && b.connected ? (b.d.capacity.populationFallback||0) : 0)), 0); },
   social(list){ return list.filter(b => b.active && b.d.effects.satisfaction > 0).length; },
   update(S, list, rep){
     const res = S.res, pop = res.population, cap = this.capacity(list);

@@ -40,3 +40,20 @@
   };
   BuildingSystem.costText = cost => Object.entries(cost).map(([k,v]) => Sprites.icon(k)+' '+v).join('&nbsp; ') || 'Gratis';
 })();
+
+// Jalan: bentuk mengikuti tetangga. mask: 1=utara, 2=timur, 4=selatan, 8=barat
+Sprites.road = function(m){
+  const seg = (c, p) => {
+    let s = `<rect x="${11-p}" y="${11-p}" width="${18+2*p}" height="${18+2*p}" rx="2" fill="${c}"/>`;
+    if(m & 1) s += `<rect x="${11-p}" y="0" width="${18+2*p}" height="12" fill="${c}"/>`;
+    if(m & 2) s += `<rect x="28" y="${11-p}" width="12" height="${18+2*p}" fill="${c}"/>`;
+    if(m & 4) s += `<rect x="${11-p}" y="28" width="${18+2*p}" height="12" fill="${c}"/>`;
+    if(m & 8) s += `<rect x="0" y="${11-p}" width="12" height="${18+2*p}" fill="${c}"/>`;
+    return s;
+  };
+  const d = 'stroke="#e8e2b0" stroke-width="1.6" stroke-dasharray="4 3"';
+  let l = '';
+  if(m & 1) l += `<path d="M20 20V0" ${d}/>`; if(m & 2) l += `<path d="M20 20H40" ${d}/>`;
+  if(m & 4) l += `<path d="M20 20V40" ${d}/>`; if(m & 8) l += `<path d="M20 20H0" ${d}/>`;
+  return `<svg viewBox="0 0 40 40" aria-hidden="true">${seg('#4f555d', 2)}${seg('#6c727a', 0)}${l}</svg>`;
+};

@@ -106,3 +106,69 @@ body{background:var(--bg);color:var(--ink);font:15px/1.45 "Trebuchet MS","Segoe 
 .cell.site{box-shadow:inset 0 0 0 2px #f2c33a}
 .cell.damaged svg{filter:grayscale(1) brightness(.6)}
 .cell.damaged::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(229,83,61,.4) 6px 8px)}
+
+/* Tahap 6: tata letak 3 kolom, kartu, chip, menu, hasil */
+#topbar{gap:8px 14px}
+#dayBox{gap:8px;flex-wrap:wrap}
+#dayBox .sec,#menuBtn{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:600;border-radius:6px;padding:6px 12px;cursor:pointer;font:inherit}
+#nextDay{position:relative}
+#resources{margin-left:auto}
+#resources li{background:none;padding:0}
+.chip{font:inherit;color:inherit;display:inline-flex;align-items:center;gap:6px;background:rgba(127,160,150,.14);border:1px solid transparent;border-radius:14px;padding:3px 10px 3px 7px;cursor:pointer}
+button.chip:hover{border-color:var(--acc)}
+.sl{font-size:12px;color:var(--mute);font-weight:400}
+#game{display:grid;grid-template-columns:264px minmax(0,1fr) 292px;flex:1;min-height:0}
+#side{border-right:1px solid var(--line);background:var(--panel);overflow:auto;padding:10px;display:flex;flex-direction:column;gap:10px}
+#panel{width:auto;padding-top:6px}
+.card{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:rgba(127,160,150,.07)}
+.card h2{margin:0 0 8px;font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--acc);display:flex;justify-content:space-between;align-items:center}
+.mini{font:inherit;font-size:12px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:2px 8px;cursor:pointer}
+#info{border-top:0;padding-top:0}
+#report{border-top:0}
+#report:empty{display:block}
+#report:empty::before{content:"Belum ada laporan. Tekan Hari berikutnya.";color:var(--mute);font-size:13px}
+#report ul{margin:6px 0 0}
+#tools{padding-top:16px}
+.tool{position:relative}
+.tool.hint::before{content:"▼";position:absolute;top:-18px;left:50%;transform:translateX(-50%);color:var(--acc);font-size:17px;animation:bob .7s ease-in-out infinite alternate;z-index:2;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+#nextDay.hint{box-shadow:0 0 0 3px rgba(240,180,60,.65)}
+#nextDay.hint::after{content:"▲";position:absolute;top:100%;left:50%;transform:translateX(-50%);color:var(--acc);font-size:17px;animation:bob2 .7s ease-in-out infinite alternate;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.cell.hinttile::before{content:"▼";position:absolute;top:-2px;left:50%;transform:translateX(-50%);font-size:22px;color:var(--acc);z-index:3;text-shadow:0 1px 3px #000;animation:bob .7s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translate(-50%,7px)}}
+@keyframes bob2{to{transform:translate(-50%,-6px)}}
+.lite *{animation:none!important;transition:none!important}
+#modal .box.wide{max-width:680px}
+#modal .box.menu{max-width:380px}
+#modal .box.result{max-width:480px}
+.tag{color:var(--mute);margin:-4px 0 12px}
+.mmenu{display:grid;gap:8px}
+.big{font:inherit;font-weight:700;text-align:left;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.big small{font-weight:400;color:var(--mute);font-size:12.5px}
+.big:hover{border-color:var(--acc);background:rgba(240,180,60,.1)}
+.mcard small{color:var(--mute);font-size:11.5px}
+.mcard.locked{opacity:.45;cursor:not-allowed}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;margin:6px 0}
+.tbl th,.tbl td{text-align:left;padding:4px 8px;border-bottom:1px solid var(--line)}
+.tbl th{color:var(--mute);font-weight:600}
+.chart{width:100%;height:auto;background:rgba(127,160,150,.08);border-radius:6px}
+.legend{font-size:12px;margin:4px 0 8px}.legend .g{color:#4faa64}.legend .r{color:#d9694f}
+.note{font-size:12px;color:var(--mute)}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.ach{border:1px solid var(--line);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;opacity:.55}
+.ach.got{opacity:1;border-color:#4faa64}
+.ach span{font-size:12.5px;color:var(--mute)}.ach em{font-style:normal;font-size:12px;color:var(--acc)}
+.rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+.rgrid div{border:1px solid var(--line);border-radius:8px;padding:8px;text-align:center}
+.rgrid b{display:block;font-size:20px}.rgrid span{font-size:11.5px;color:var(--mute)}
+#modal h2.win{color:#4faa64}#modal h2.lose{color:#e0715c}
+.set{display:flex;align-items:center;gap:8px;margin:8px 0}
+.set select{font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:3px 6px}
+.danger{font:inherit;margin-top:12px;background:transparent;color:#e0715c;border:1px solid #e0715c;border-radius:6px;padding:6px 12px;cursor:pointer}
+@media (max-width:900px){
+  #game{display:flex;flex-direction:column;overflow:auto}
+  #mapWrap{order:1;flex:none}
+  #side{order:2;border-right:0;border-top:1px solid var(--line);overflow:visible;flex:none}
+  #panel{order:3;border-left:0;border-top:1px solid var(--line);overflow:visible;flex:none}
+  #resources{margin-left:0}
+  .rgrid{grid-template-columns:repeat(2,1fr)}
+}

@@ -7,7 +7,7 @@
   Modes.endless = {
     id:'endless', name:'Endless Settlement', desc:'Tanpa akhir. Kejar skor dan hari bertahan.', diff:'Sulit',
     score, debtDays:7, hungerLimit:6,
-    introHtml(){ return `<h2>${this.name}</h2><p>Tidak ada garis akhir. Setiap 10 hari peta diperluas, biaya bangunan naik 8%, dan kadang musim kering datang. Ladang di luar lahan subur (bertanda bunga) hanya menghasilkan 60%.</p><p>Kalah jika penduduk habis, bangkrut ${this.debtDays} hari, atau kelaparan ${this.hungerLimit} hari. Kejar skor tertinggi.</p>`; },
+    introHtml(){ return `<h2>${this.name}</h2><p>Tidak ada garis akhir. Setiap 10 hari peta diperluas, biaya bangunan naik 8% (maksimal 300%, bahan maksimal 150 per bangunan), dan kadang musim kering datang. Ladang di luar lahan subur (bertanda bunga) hanya menghasilkan 60%.</p><p>Kalah jika penduduk habis, bangkrut ${this.debtDays} hari, atau kelaparan ${this.hungerLimit} hari. Kejar skor tertinggi.</p>`; },
     goals(S){ return [{label:'Skor', text:String(score(S)), ok:false}, {label:'Hari bertahan', text:String(S.day-1), ok:false},
                       {label:'Biaya bangunan', text:Math.round(S.costMult*100) + '%', ok:false}]; },
     evaluate(S){

@@ -7,8 +7,9 @@ window.BuildingSystem = {
   // Biaya bangun dengan pengali (Endless: biaya naik seiring waktu)
   scaled(cost, m){
     m = m || (window.Game && Game.S.costMult) || 1; if(m === 1) return cost;
-    const o = {}; for(const k in cost) o[k] = Math.ceil(cost[k]*m); return o;
+    const o = {}; for(const k in cost){ const v = Math.ceil(cost[k]*m); o[k] = (k === 'coins' || k === 'food') ? v : Math.min(v, 150); } return o;
   },
+  track(state, cost){ for(const k in cost) state.spent[k] = (state.spent[k]||0) + cost[k]; },
   expeditionCost(state){ return {food:8, coins:20 + 5*state.stats.expeditions}; },
   costText(cost){ return Object.entries(cost).map(([k,v]) => Sprites.icon(k)+' '+v).join('&nbsp; ') || 'Gratis'; },
   place(state, x, y, id){
@@ -18,7 +19,7 @@ window.BuildingSystem = {
     if(tile.type !== 'empty') return {ok:false, msg:'Petak sudah terisi. Hapus isinya dulu.'};
     const cost = this.scaled(def.cost, state.costMult);
     if(!this.canAfford(cost, state.res)) return {ok:false, msg:'Sumber daya tidak cukup untuk '+def.name+'.'};
-    this.pay(cost, state.res);
+    this.pay(cost, state.res); this.track(state, cost);
     tile.type = id; tile.status = null; tile.damaged = false; state.stats.built++;
     return {ok:true, msg:def.name+' dibangun.'};
   },
@@ -43,7 +44,7 @@ window.BuildingSystem = {
     if(!tile.damaged) return {ok:false, msg:'Bangunan ini tidak rusak.'};
     const def = BUILDINGS[tile.type], cost = this.refund(def.cost);
     if(!this.canAfford(cost, state.res)) return {ok:false, msg:'Biaya perbaikan kurang: ' + def.name + '.'};
-    this.pay(cost, state.res); tile.damaged = false; tile.status = null;
+    this.pay(cost, state.res); this.track(state, cost); tile.damaged = false; tile.status = null;
     return {ok:true, msg:def.name+' diperbaiki.'};
   },
   explore(state, x, y){
@@ -53,11 +54,11 @@ window.BuildingSystem = {
     if(!near) return {ok:false, msg:'Ekspedisi harus dimulai dari petak yang bersebelahan dengan wilayah terbuka.'};
     const cost = this.expeditionCost(state);
     if(!this.canAfford(cost, state.res)) return {ok:false, msg:'Makanan atau Coins kurang untuk ekspedisi.'};
-    this.pay(cost, state.res); state.stats.expeditions++;
+    this.pay(cost, state.res); this.track(state, cost); state.stats.expeditions++;
     const f = {tree:0, rock:0, fertile:0, swamp:0, site:0};
     for(let dy=-1; dy<=1; dy++) for(let dx=-1; dx<=1; dx++){
       const t = MapSystem.get(m, x+dx, y+dy); if(!t || !t.hidden) continue;
-      t.hidden = false;
+      t.hidden = false; state.stats.tilesOpened = (state.stats.tilesOpened||0) + 1;
       if(t.site) f.site++; else if(t.type === 'tree') f.tree++; else if(t.type === 'rock') f.rock++;
       else if(t.type === 'swamp') f.swamp++; else if(t.fertile) f.fertile++;
     }

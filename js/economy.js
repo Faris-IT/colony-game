@@ -18,7 +18,7 @@ window.Economy = {
       t.status = 'ok'; b.active = true;
       for(const k in need){ res[k] -= need[k]; this.addTo(rep.cons, k, need[k]); }
       const farm = b.d.production.food > 0;
-      const mult = (t.site ? 2 : 1) * (farm ? (t.fertile ? 1.5 : (S.rules.fertileOnly ? 0.6 : 1)) : 1);
+      const mult = (t.site ? 2 : 1) * (b.near ? 1.2 : 1) * (farm ? (t.fertile ? 1.5 : (S.rules.fertileOnly ? 0.6 : 1)) : 1);
       for(const k in b.d.production){
         let v = b.d.production[k] * mult;
         if(k === 'energy' && mod.power != null) v *= mod.power;

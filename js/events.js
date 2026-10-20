@@ -22,7 +22,7 @@ window.Events = {
   endless(S, rep){
     const m = S.map, E = S.rules.endless;
     if(m.w < E.maxW){ MapSystem.expand(m, 2, 2, 0.1, 0.05); MapSystem.addFertile(m, 1); rep.expanded = true; rep.notes.push('Peta diperluas.'); }
-    S.costMult = Math.round(S.costMult * 1.08 * 100) / 100; rep.notes.push('Biaya bangunan naik menjadi ' + Math.round(S.costMult*100) + '%.');
+    S.costMult = Math.min(3, Math.round(S.costMult * 1.08 * 100) / 100); rep.notes.push('Biaya bangunan naik menjadi ' + Math.round(S.costMult*100) + '%.');
     if(Math.random() < 0.5){ S.drought = 3; rep.notes.push('Musim kering datang.'); }
   }
 };

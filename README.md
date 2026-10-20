@@ -11,7 +11,7 @@ Buka `index.html` di browser (atau host statis). Tidak perlu server.
 - [x] Mode Tutorial (tambahan di luar 12 mode, untuk pemain baru)
 - [x] Tahap 4: Mode dasar dan variasi ekonomi (Speed Builder, Survival, Economic Empire, Population Boom, Tiny Territory)
 - [x] Tahap 5: Mekanik khusus (Green Colony, Disaster Response, Frontier Explorer, Energy Crisis, Endless Settlement)
-- [ ] Tahap 6: Campaign dan progres
+- [x] Tahap 6: Campaign dan progres (6 misi, 12 pencapaian, statistik, penyimpanan, pengaturan, hasil, Continue Game)
 - [ ] Tahap 7: Pengujian dan rilis
 
 ## Kontrol Tahap 1

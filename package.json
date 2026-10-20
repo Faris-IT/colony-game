@@ -1,0 +1,13 @@
+{
+  "name": "mufa-colony",
+  "version": "1.0.0",
+  "description": "Mufa Colony - game simulasi, strategi, dan manajemen sumber daya berbasis browser. HTML, CSS, dan JavaScript murni.",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "node tests/run.js",
+    "docs": "node tools/gen-docs.js",
+    "assets": "node tools/gen-assets.js"
+  },
+  "engines": { "node": ">=18" }
+}

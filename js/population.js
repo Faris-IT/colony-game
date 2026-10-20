@@ -21,6 +21,6 @@ window.Population = {
     else if(pop > cap){ d = cap - pop; rep.notes.push('Rumah penuh: warga kehilangan tempat tinggal.'); }
     else if(S.satisfaction < 30 && pop > 0){ d = -1; rep.notes.push('Warga tidak puas dan pergi.'); }
     else if(S.shortage === 0 && S.satisfaction >= 50 && pop < cap && res.food >= pop){ d = Math.min((S.rules.growth||1) + (S.satisfaction >= 85 ? 1 : 0), cap - pop); }
-    res.population = pop + d; rep.pop = d; rep.cap = cap; rep.sat = S.satisfaction;
+    res.population = Math.max(0, Math.min(pop + d, cap)); d = res.population - pop; rep.pop = d; rep.cap = cap; rep.sat = S.satisfaction;
   }
 };

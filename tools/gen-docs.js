@@ -1,0 +1,12 @@
+// Membuat docs/BUILDINGS.md dari data/buildings.js supaya dokumentasi selalu cocok dengan game.
+const fs = require('fs'), path = require('path');
+const {boot, ROOT} = require('../tests/harness');
+const {ctx} = boot('classic'), BL = ctx.BUILDINGS;
+const N = {food:'makanan', wood:'kayu', stone:'batu', coins:'Coins', energy:'energi', energyStorage:'simpanan energi', storage:'stok', population:'warga'};
+const f = o => Object.keys(o).length ? Object.entries(o).map(([k, v]) => v + ' ' + (N[k] || k)).join(', ') : '-';
+const cap = o => { const a = []; if(o.population) a.push('menampung ' + o.population + ' warga' + (o.populationFallback ? ' (tanpa energi: ' + o.populationFallback + ')' : '')); if(o.storage) a.push('+' + o.storage + ' stok'); if(o.energyStorage) a.push('+' + o.energyStorage + ' simpanan energi'); return a.join(', ') || '-'; };
+const eff = o => Object.entries(o).map(([k, v]) => ({environment:'lingkungan', satisfaction:'kepuasan'}[k] + ' ' + (v > 0 ? '+' : '') + v)).join(', ') || '-';
+let md = '# Katalog bangunan\n\n> Dibuat otomatis dari `data/buildings.js` dengan `npm run docs`. Semua nilai adalah nilai awal yang diuji lewat balancing, bukan angka final yang dijamin seimbang.\n\n| Bangunan | Kategori | Biaya | Pemeliharaan/hari | Pekerja | Produksi/hari | Konsumsi/hari | Kapasitas | Efek |\n|---|---|---|---|---|---|---|---|---|\n';
+Object.entries(BL).forEach(([id, d]) => { md += `| **${d.name}** | ${d.cat} | ${f(d.cost)} | ${d.maintenance} Coins | ${d.workersRequired || '-'} | ${f(d.production)} | ${f(d.consumption)} | ${cap(d.capacity)} | ${eff(d.effects)} |\n`; });
+md += `\n## Aturan yang berlaku untuk semua bangunan\n\n- **Jalan:** bangunan yang menempel jalan (atas, bawah, kiri, kanan) menghasilkan +20%. Di mode Tiny Territory jalan wajib agar bangunan beroperasi.\n- **Pekerja:** warga mengisi lowongan menurut prioritas: ${Object.entries(ctx.CONFIG.priority).sort((a, b) => b[1] - a[1]).map(([k, v]) => BL[k].name).join(' > ')}.\n- **Energi:** pembangkit diproses lebih dulu; bangunan yang butuh energi tetapi kekurangan akan berhenti (tanda abu-abu).\n- **Fasilitas sosial:** tiap 10 warga butuh 1 fasilitas (Taman, Klinik, Sekolah, atau Pasar), jika kurang kepuasan turun.\n- **Menghapus:** bangunan mengembalikan 50% biaya (dibulatkan ke bawah). Pohon memberi 5 kayu, batu memberi 4 batu.\n`;
+fs.mkdirSync(path.join(ROOT, 'docs'), {recursive:true}); fs.writeFileSync(path.join(ROOT, 'docs/BUILDINGS.md'), md); console.log('docs/BUILDINGS.md dibuat');

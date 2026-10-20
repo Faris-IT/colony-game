@@ -26,3 +26,4 @@ CONFIG.modes = {
 
 // Tahap 5
 CONFIG.priority = {apartment:9, clinic:9, school:8, house:7, farm:7, orchard:6, sawmill:5, quarry:5, warehouse:4, market:4, workshop:3, park:2};
+CONFIG.priority.power = 6; CONFIG.priority.battery = 3; CONFIG.version = '1.0.0';

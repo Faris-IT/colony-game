@@ -6,7 +6,7 @@ window.Screens = {
   back(inGame){ return [{label:'Kembali', fn:() => this.main(inGame)}]; },
   main(inGame){
     const has = Store.hasGame(), btn = (a,t,s) => `<button class="big" data-a="${a}">${t}${s ? `<small>${s}</small>` : ''}</button>`;
-    UI.modal(`<h2>Mufa Colony</h2><p class="tag">Build Your Colony. Manage Your Future.</p><div class="mmenu">`
+    UI.modal(`<h2>Mufa Colony</h2><p class="tag">Build Your Colony. Manage Your Future. <span class="ver">v${CONFIG.version}</span></p><div class="mmenu">`
       + (inGame ? btn('resume','Kembali ke permainan') + btn('restart','Mulai ulang') : (has ? btn('cont','Lanjutkan permainan', Store.gameLabel()) : '') + btn('play','Main','Mode terakhir, atau Tutorial jika baru'))
       + btn('modes','Pilih mode') + btn('ach','Pencapaian') + btn('stats','Statistik') + btn('settings','Pengaturan') + '</div>', [{label:'Tutup'}], 'menu');
     this.bind({resume:() => { document.getElementById('modal').hidden = true; },

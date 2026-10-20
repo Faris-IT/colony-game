@@ -8,9 +8,10 @@ window.Sim = {
     const R = S.rules, list = [];
     S.map.tiles.forEach((row,y) => row.forEach((t,x) => { if(BUILDINGS[t.type]) list.push({t, x, y, d:BUILDINGS[t.type], active:false}); }));
     list.forEach(b => { b.near = b.t.type !== 'road' && this.nearRoad(S.map, b.x, b.y); b.connected = !R.roadRequired || b.t.type === 'road' || b.near; });
-    list.sort((a,b) => ((b.d.production.energy?100:0) + (CONFIG.priority[b.t.type]||5)) - ((a.d.production.energy?100:0) + (CONFIG.priority[a.t.type]||5)));
+    list.sort((a,b) => (CONFIG.priority[b.t.type]||5) - (CONFIG.priority[a.t.type]||5)); // pekerja diberikan menurut prioritas
     let free = S.res.population;
     list.forEach(b => { b.staffed = !b.t.damaged && b.connected && b.d.workersRequired <= free; if(b.staffed) free -= b.d.workersRequired; });
+    list.sort((a,b) => (b.d.production.energy?1:0) - (a.d.production.energy?1:0)); // produksi: pembangkit dulu agar konsumen kebagian energi
     return {list, free};
   },
   // Untuk tampilan: penduduk yang bekerja dan jumlah lowongan

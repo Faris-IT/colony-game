@@ -172,3 +172,5 @@ button.chip:hover{border-color:var(--acc)}
   #resources{margin-left:0}
   .rgrid{grid-template-columns:repeat(2,1fr)}
 }
+
+.ver{font-size:12px;opacity:.7;margin-left:6px}

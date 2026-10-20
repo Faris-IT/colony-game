@@ -10,19 +10,19 @@ Get-ChildItem -Recurse -File | Where-Object { $_.FullName -notmatch '\\.git\\\\'
 ```
 
 ## 1. Buat repository
-1. Di GitHub: **New repository**, nama `mufa-colony`, **Public**, tanpa README, `.gitignore`, atau lisensi (sudah ada di proyek).
+1. Di GitHub: **New repository**, nama `colony-game`, **Public**, tanpa README, `.gitignore`, atau lisensi (sudah ada di proyek).
 2. Di folder proyek:
 
 ```bash
 git init -b main
 git add .
 git commit -m "Mufa Colony 1.0.0"
-git remote add origin https://github.com/faris-it/mufa-colony.git
+git remote add origin https://github.com/faris-it/colony-game.git
 git push -u origin main
 ```
 
 ## 2. Aktifkan GitHub Pages
-**Settings → Pages → Build and deployment → Source: GitHub Actions.** Workflow `Deploy ke GitHub Pages` berjalan otomatis setiap push ke `main`. Setelah selesai, game tersedia di `https://faris-it.github.io/mufa-colony/`.
+**Settings → Pages → Build and deployment → Source: GitHub Actions.** Workflow `Deploy ke GitHub Pages` berjalan otomatis setiap push ke `main`. Setelah selesai, game tersedia di `https://faris-it.github.io/colony-game/`.
 
 ## 3. Percantik halaman repository
 - **About (ikon roda gigi di kanan atas halaman repo):**

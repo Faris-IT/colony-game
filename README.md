@@ -4,7 +4,7 @@
 
 ### Bangun koloni. Kelola sumber daya. Hadapi tantangan yang berbeda di setiap mode.
 
-[![CI](https://github.com/faris-it/mufa-colony/actions/workflows/ci.yml/badge.svg)](https://github.com/faris-it/mufa-colony/actions/workflows/ci.yml)
+[![CI](https://github.com/faris-it/colony-game/actions/workflows/ci.yml/badge.svg)](https://github.com/faris-it/colony-game/actions/workflows/ci.yml)
 ![Versi](https://img.shields.io/badge/versi-1.0.0-f0b43c?style=flat-square)
 ![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572b6?style=flat-square&logo=css3&logoColor=white)
@@ -13,7 +13,7 @@
 ![Aset eksternal](https://img.shields.io/badge/aset%20eksternal-0-4faa64?style=flat-square)
 ![Lisensi](https://img.shields.io/badge/lisensi-MIT-blue?style=flat-square)
 
-## [▶ Mainkan sekarang](https://faris-it.github.io/mufa-colony/)
+## [▶ Mainkan sekarang](https://faris-it.github.io/colony-game/)
 
 [Cara bermain](docs/HOW_TO_PLAY.md) · [Daftar mode](docs/MODES.md) · [Katalog bangunan](docs/BUILDINGS.md) · [Keseimbangan](docs/BALANCE.md) · [Pengembangan](docs/DEVELOPMENT.md)
 
@@ -101,7 +101,7 @@ Prinsip arsitektur: mesin simulasi hanya menghitung satu hari, bangunan didefini
 ## Struktur proyek
 
 ```
-mufa-colony/
+colony-game/
 ├── index.html            # Titik masuk game
 ├── css/style.css         # Tata letak, peta, panel, tema
 ├── js/                   # Mesin: state, map, buildings, economy, population,
